@@ -7,7 +7,14 @@ Detailed information on how to interpret NMEA messages can be found here.
 The program shall support the following command-line interface:
 
 ```
-$ gpsanalyzer [-c] [-f] [-h] [-s] [-f FILENAME]
+$ ./gpsanalyzer.exe -h
+Usage: gpsanalyzer [options]
+Options:
+  -h                    Print this message and exit.
+  -c                    Print coordinates.
+  -s                    Print satellites.
+  -t                    Print timestamp.
+  -f FILE               Read FILE as inputfile.
 ```
 
 [![Build Status](https://travis-ci.org/kwaxi/GPSLogAnalyzer.svg?branch=master)](https://travis-ci.org/kwaxi/GPSLogAnalyzer)
