@@ -8,8 +8,6 @@ struct args_t;
 
 typedef struct args_t args_t;
 
-static const char *opt_string = "cf:hstv?";
-
 bool parse_args(int argc, char **argv, args_t *args);
 
 int main(int argc, char **argv);

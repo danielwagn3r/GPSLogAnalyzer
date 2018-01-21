@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 bool parse_args(int argc, char **argv, args_t *args)
 {
     int opt = 0;
+    const char *opt_string = "cf:hstv?";
 
     args->coordinates = false;
     args->satellites = false;
