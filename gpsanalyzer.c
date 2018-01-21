@@ -1,10 +1,10 @@
-
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
 #include "gpsanalyzer.h"
+#include "nmea.h"
 
 struct args_t
 {
@@ -24,11 +24,29 @@ int main(int argc, char **argv)
 
     args_valid = parse_args(argc, argv, &args);
 
-    if (!args_valid || args.help)
+    if (!args_valid || args.help || !args.input_filename)
     {
         usage();
         return EXIT_FAILURE;
     }
+
+    args.input_file = fopen(args.input_filename, "r");
+
+    if (args.input_file == NULL)
+    {
+        fputs("Error opening inputfile", stdout);
+        return EXIT_FAILURE;
+    }
+
+    char line[512];
+
+    while (fgets(line, sizeof line, args.input_file) != NULL)
+    {
+        nmea_sentence_t t = nmea_get_sentence_type(line + 1, (sizeof line) - 1);
+        fprintf(stdout, "%s (type: %#x)\n", line, t);
+    }
+
+    fclose(args.input_file);
 
     return EXIT_SUCCESS;
 }

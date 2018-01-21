@@ -8,10 +8,12 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 set(SOURCE
   gpsanalyzer.c
+  nmea.c
 )
 
 set(HEADERS
   gpsanalyzer.h
+  nmea.h
 )
 
 add_executable(gpsanalyzer ${SOURCE} ${HEADERS})
