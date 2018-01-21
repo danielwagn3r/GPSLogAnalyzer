@@ -5,18 +5,13 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+struct args_t;
 
-struct global_args_t {
-	bool coordinates;           /* -c option */
-	bool timestamp;				/* -t option */
-    bool satellites;            /* -s option */
-	const char *input_filename;	/* -f option */
-	FILE *input_file;
-    unsigned int verbosity;		/* -v option */
-} global_args;
-
+typedef struct args_t args_t;
 
 static const char *opt_string = "cf:hstv?";
+
+bool parse_args(int argc, char** argv, args_t* args);
 
 int main(int argc, char** argv);
 
