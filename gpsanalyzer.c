@@ -43,7 +43,25 @@ int main(int argc, char **argv)
     while (fgets(line, sizeof line, args.input_file) != NULL)
     {
         nmea_sentence_t t = nmea_get_sentence_type(line + 1, (sizeof line) - 1);
-        fprintf(stdout, "%s (type: %#x)\n", line, t);
+        /* fprintf(stdout, "%s (type: %#x)\n", line, t); */
+
+        switch (t)
+        {
+            case GPGSV:
+                {
+                    nmea_parse_gsv_sentence(line,(sizeof line), args.satellites);
+                    break;
+                }
+
+            case GPRMC:
+                {
+                    nmea_parse_rmc_sentence(line,(sizeof line), args.timestamp, args.coordinates);
+                    break;
+                }
+
+            default:
+                break;
+        }
     }
 
     fclose(args.input_file);
